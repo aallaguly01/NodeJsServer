@@ -1,10 +1,12 @@
-//ispolzuyem bibliateku express
+// используем библиотеку express
 const express = require('express');
-//sozdaem object express
+const bodyParser = require('body-parser');
+// создаем объект express
 const app = express();
-// govorim , chto my razdelaem papku public
+app.use(bodyParser.urlencoded({ extended: true }));
+require('./app/routes')(app);
+// говорим, что мы раздаем папку public
 app.use(express.static('public'));
-//govorim , chto zapuskaem na portu 80
+// говорим, что запускаемся на порту 80
 app.listen(80);
-
 console.log("Server started at 80");

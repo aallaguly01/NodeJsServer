@@ -6,9 +6,27 @@
 	<title>CV</title>
 	<link rel="stylesheet" href="css/font-awesome.min.css">
 	<link rel="stylesheet" href="css/main.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js"
+            integrity="sha512-WNLxfP/8cVYL9sj8Jnp6et0BkubLP31jhTG9vhL/F5uEZmg5wEzKoXp1kJslzPQWwPT1eyMiSxlKCgzHLOTOTQ=="
+            crossorigin="anonymous"></script>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 </head>
+<script>
+    function getUsers() {
+        $.getJSON("/users", function (response) {
+            let html = "<table>";
+            for (let i = 0; i < response.length; i++) {
+                html += "<tr>";
+                html += "<td>" + response[i]["name"] + "</td>";
+                html += "</tr>";
+            }
+            html += "</table>";
+            $("#users_table").append(html);
+        });
+    }
+</script>
+
 
 <body>
 	<div class="navbar navbar-inverse navbar-fixed-top">
@@ -30,6 +48,10 @@ I am 5′ 10″ tall from bottom to top and vice versa.
 I refrain from using my own picture on Quora as my words are sufficient to frighten the people here.
 Quora always made me realised how wrong I was whenever I added any topic I thought I knew better.
 				</p>
+				<button onclick="getUsers()">Получить данные</button>
+						<div id="users_table">
+
+						</div>
 			</div>
 		</div>
 	</div>
@@ -66,6 +88,10 @@ Quora always made me realised how wrong I was whenever I added any topic I thoug
 							<input id="send_input" type="text" placeholder="Write your ...">
 							<input type="submit" name="send">
 						</form>
+					</li>
+					<li>
+						
+
 					</li>
 				</ul>
 			</div>
